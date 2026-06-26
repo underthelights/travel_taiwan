@@ -3,70 +3,114 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>준비물·팁 ㅣ 타이베이·신주</title>
+<title>준비물 ㅣ 대만여행</title>
+<meta name="description" content="대만 2박3일 여행 전 챙길 서류, 현금, 통신, 날씨 대비, 수하물, 지도 저장 체크리스트.">
+<meta name="theme-color" content="#f3ead8">
+<link rel="canonical" href="https://underthelights.github.io/travel_taiwan/">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="TAIWAN">
+<meta property="og:title" content="대만 여행 준비물">
+<meta property="og:description" content="출국 전 체크리스트, 수하물, 현금, 통신, 지도 저장만 모은 준비 페이지.">
+<meta property="og:url" content="https://underthelights.github.io/travel_taiwan/">
+<meta property="og:image" content="https://underthelights.github.io/travel_taiwan/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="style.css">
+<style>
+  .prep-hero{background:linear-gradient(135deg,#171d28,#12151c); border:1px solid var(--line); border-radius:14px; padding:22px 24px; margin-bottom:18px;}
+  .prep-hero span{display:block; color:var(--accent2); font-size:11px; font-weight:900; letter-spacing:0; margin-bottom:8px;}
+  .prep-hero h1{font-size:28px; line-height:1.2; margin:0;}
+  .prep-hero p{max-width:760px; color:#d2d8e6; font-size:13.5px; line-height:1.7; margin-top:8px;}
+  .prep-grid{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px;}
+  .prep-card{background:var(--panel2); border:1px solid var(--line); border-radius:10px; padding:15px;}
+  .prep-card h2{font-size:15px; margin-bottom:10px;}
+  .prep-card ul,.mini-list{display:grid; gap:7px; margin:0; padding:0;}
+  .prep-card li,.mini-list li{list-style:none; color:#d2d8e6; font-size:12.8px; line-height:1.45; padding-left:17px; position:relative;}
+  .prep-card li::before,.mini-list li::before{content:""; position:absolute; left:0; top:.62em; width:6px; height:6px; border-radius:50%; background:var(--accent);}
+  .prep-split{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+  .todo-row{display:grid; grid-template-columns:90px minmax(0,1fr); gap:10px; align-items:start; padding:10px 0; border-bottom:1px dashed var(--line);}
+  .todo-row:last-child{border-bottom:0;}
+  .todo-row b{color:var(--accent2); font-size:12.5px;}
+  .todo-row span{color:#d2d8e6; font-size:13px; line-height:1.5;}
+  .map-steps{counter-reset:step; display:grid; gap:8px;}
+  .map-steps li{counter-increment:step; list-style:none; color:#d2d8e6; font-size:13px; line-height:1.5; padding:9px 11px 9px 40px; background:#14171e; border:1px solid var(--line); border-radius:8px; position:relative;}
+  .map-steps li::before{content:counter(step); position:absolute; left:11px; top:8px; width:20px; height:20px; border-radius:50%; background:var(--accent); color:#001; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:900;}
+  @media(max-width:860px){
+    .prep-grid{grid-template-columns:1fr 1fr;}
+    .prep-split{grid-template-columns:1fr;}
+  }
+  @media(max-width:620px){
+    .prep-grid{grid-template-columns:1fr;}
+    .prep-hero{padding:20px;}
+  }
+</style>
 </head>
 <body>
 <nav class="nav">
-  <span class="logo">🇹🇼 타이베이·신주</span>
+  <a class="logo" href="index.html" aria-label="The Summer of Taipei 홈"><img src="assets/blog-icon.png" alt="">The Summer of Taipei</a>
   <a href="index.html">홈</a>
   <a href="day.html?d=1" class="d1">1일차</a>
   <a href="day.html?d=2" class="d2">2일차</a>
   <a href="day.html?d=3" class="d3">3일차</a>
-  <a href="info.html" class="active">준비물·팁</a>
+  <a href="eat.html">먹킷리스트</a>
+  <a href="train.html">교통</a>
+  <a href="info.html" class="active">준비물</a>
 </nav>
+<script src="nav.js"></script>
 
-<div class="wrap">
-  <div class="section-title">🗺️ 내 구글맵에 넣기 (My Maps Import)</div>
-  <div class="card">
-    <div class="cardh">KML 파일로 개인 구글 지도에 그대로 불러오기</div>
-    <div class="tip"><b>1단계</b> <a href="taiwan_trip.kml" download style="color:var(--accent)">📥 taiwan_trip.kml 다운로드</a></div>
-    <div class="tip"><b>2단계</b> <a href="https://www.google.com/maps/d/" target="_blank" style="color:var(--accent)">Google My Maps</a> 접속 → [새 지도 만들기]</div>
-    <div class="tip"><b>3단계</b> [가져오기] 클릭 → 받은 <b>taiwan_trip.kml</b> 업로드</div>
-    <div class="tip"><b>완성</b> 1·2·3일차가 레이어로 자동 분리되고, 핀·동선·설명이 그대로 들어갑니다. 폰 구글맵 [저장됨]에서도 열람 가능.</div>
-  </div>
+<main class="wrap">
+  <section class="prep-hero">
+    <span>출국 전 체크</span>
+    <h1>출국 전에 챙길 것만</h1>
+    <p>이 페이지는 준비물 전용입니다. 교통패스와 기차표 판단은 교통 페이지, 도시 배경지식은 타이완 노트에 분리했습니다.</p>
+  </section>
 
-  <div class="section-title">✅ 예약 우선순위</div>
-  <div class="card"><ol class="prio" id="prioBox"></ol></div>
+  <div class="section-title">출국 전 체크리스트</div>
+  <section class="prep-grid" id="checkBox"></section>
 
-  <div class="section-title">🔰 초보 팁 (네이버 블로그 반영)</div>
-  <div class="card" id="tipBox"></div>
+  <div class="section-title">수하물</div>
+  <section class="prep-split" id="bagBox"></section>
 
-  <div class="section-title">🧳 수하물 규정 (진에어)</div>
-  <div class="grid2">
-    <div class="card">
-      <div class="cardh">위탁 수하물</div>
-      <div class="tip"><b>15kg</b> 무료 포함 (가는편·오는편 모두)</div>
-      <div class="tip">세 변 합 ≤ 203cm, 단일 가방 ≤ 32kg</div>
-      <div class="tip">초과 시 온라인 사전구매 약 ₩55,000 (공항보다 쌈)</div>
-    </div>
-    <div class="card">
-      <div class="cardh">기내 수하물 (별도)</div>
-      <div class="tip"><b>10kg</b> · 세 변 합 ≤ 115cm + 노트북가방 1개</div>
-      <div class="tip"><b>보조배터리·라이터</b> 위탁 금지 → 반드시 기내(손가방)</div>
-      <div class="tip">액체는 100ml 이하, 1L 지퍼백 1개</div>
-    </div>
-  </div>
+  <div class="section-title">아직 결정할 것</div>
+  <section class="card" id="todoBox"></section>
 
-  <div class="section-title">💰 예산 상세 (1인)</div>
-  <div class="card"><ul class="budget" id="budgetBox"></ul></div>
+  <div class="section-title">내 구글맵에 넣기</div>
+  <section class="card">
+    <div class="cardh"><a href="taiwan_trip.kml" download style="color:var(--accent)">taiwan_trip.kml 다운로드</a></div>
+    <ol class="map-steps" id="mapBox"></ol>
+  </section>
 
-  <div class="section-title">🚄 타이중 ↔ 타이베이 이동</div>
-  <div class="grid3">
-    <div class="card"><div class="cardh">🥇 고속철 THSR</div><div class="tip"><b>46~60분</b> · 약 ₩27,900<br>가장 빠름. 15~30분 간격 운행</div></div>
-    <div class="card"><div class="cardh">🥈 타철 자강호</div><div class="tip"><b>약 2시간</b> · 약 ₩16,000<br>시내역 직결, 더 저렴</div></div>
-    <div class="card"><div class="cardh">🥉 시외버스</div><div class="tip"><b>2.5~3시간</b> · 약 ₩13,000<br>제일 쌈, 제일 느림</div></div>
-  </div>
-  <p style="color:var(--sub); font-size:12.5px; margin-top:10px; line-height:1.6">
-    ※ 타이중 공항(RMQ)은 고속철역(신우일)과 떨어져 있어요. 공항↔신우일역 택시 약 30~40분. 귀국날은 <b>17:30 비행 → 15:00 공항 → 13:00 타이베이 출발</b>로 역산하세요.
-  </p>
-</div>
+  <div class="section-title">예산 상세</div>
+  <section class="card"><ul class="budget" id="budgetBox"></ul></section>
+</main>
 
 <script src="data.js"></script>
 <script>
 const T = window.TRIP;
-document.getElementById('prioBox').innerHTML = T.priority.map(p=>`<li>${p}</li>`).join('');
-document.getElementById('tipBox').innerHTML = T.tips.map(t=>`<div class="tip"><b>${t[0]}</b> ${t[1]}</div>`).join('');
+const P = T.prepInfo;
+
+document.getElementById('checkBox').innerHTML = P.checklist.map(group=>`
+  <article class="prep-card">
+    <h2>${group.title}</h2>
+    <ul>${group.items.map(item=>`<li>${item}</li>`).join('')}</ul>
+  </article>`).join('');
+
+document.getElementById('bagBox').innerHTML = P.baggage.map(group=>`
+  <article class="prep-card">
+    <h2>${group.title}</h2>
+    <ul>${group.items.map(item=>`<li>${item}</li>`).join('')}</ul>
+  </article>`).join('');
+
+document.getElementById('todoBox').innerHTML = P.todo.map(row=>`
+  <div class="todo-row"><b>${row[0]}</b><span>${row[1]}</span></div>`).join('');
+
+document.getElementById('mapBox').innerHTML = P.mapSteps.map(step=>`<li>${step}</li>`).join('');
+
 document.getElementById('budgetBox').innerHTML =
   T.budget.map(b=>`<li>${b[0]} <b>${b[1]}</b></li>`).join('') +
   `<li class="total"><b>합계</b><b>${T.budgetTotal}</b></li>`;

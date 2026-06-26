@@ -3,20 +3,39 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>일자별 코스 ㅣ 타이베이·신주</title>
+<title>일자별 코스 ㅣ 대만여행</title>
+<meta name="description" content="대만 세계여행 2박3일 일자별 코스와 지도.">
+<meta name="theme-color" content="#f3ead8">
+<link rel="canonical" href="https://underthelights.github.io/travel_taiwan/">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="TAIWAN">
+<meta property="og:title" content="The Summer of Taipei">
+<meta property="og:description" content="타이중에서 시작해 신주 미식과 타이베이 야시장을 지나는 2박3일 여행 플래너.">
+<meta property="og:url" content="https://underthelights.github.io/travel_taiwan/">
+<meta property="og:image" content="https://underthelights.github.io/travel_taiwan/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <nav class="nav">
-  <span class="logo">🇹🇼 타이베이·신주</span>
+  <a class="logo" href="index.html" aria-label="The Summer of Taipei 홈"><img src="assets/blog-icon.png" alt="">The Summer of Taipei</a>
   <a href="index.html">홈</a>
   <a href="day.html?d=1" class="d1" id="nav1">1일차</a>
   <a href="day.html?d=2" class="d2" id="nav2">2일차</a>
   <a href="day.html?d=3" class="d3" id="nav3">3일차</a>
-  <a href="info.html">준비물·팁</a>
+  <a href="eat.html">먹킷리스트</a>
+  <a href="train.html">교통</a>
+  <a href="info.html">준비물</a>
 </nav>
+<script src="nav.js"></script>
 
 <div class="wrap">
   <div class="dayhead">
@@ -26,9 +45,11 @@
       <p id="dTheme"></p>
     </div>
     <div class="spacer" style="flex:1"></div>
-    <a class="routebtn" id="routeBtn">🗺️ 오늘 경로 (구글맵)</a>
-    <a class="routebtn" id="kmlBtn" style="background:#3ea6ff; color:#001">📥 구글맵 KML</a>
+    <a class="routebtn" id="routeBtn">오늘 경로 (구글맵)</a>
+    <a class="routebtn" id="kmlBtn">구글맵 KML</a>
   </div>
+
+  <div class="kindbar" id="kindBar"></div>
 
   <div class="daylayout">
     <div>
@@ -53,6 +74,7 @@ document.getElementById('nav'+day).classList.add('active');
 
 const list = T.places.filter(p=>p.day===day);
 const color = T.dayColor[day];
+const stripEmoji = s => String(s || '').replace(/[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\uFE0F]/gu,'').replace(/\s+/g,' ').trim();
 
 document.getElementById('dTag').textContent = T.dayLabel[day];
 document.getElementById('dTag').style.background = color;
@@ -66,7 +88,7 @@ const markers={};
 list.forEach((p,i)=>{
   const icon = L.divIcon({className:'', html:`<div class="marker-pin" style="background:${color}"><span>${i+1}</span></div>`, iconSize:[26,26], iconAnchor:[13,26], popupAnchor:[0,-26]});
   const m = L.marker([p.lat,p.lng],{icon}).addTo(map);
-  m.bindPopup(`<b>${p.time}</b> ${p.name}<br>${p.cat}`);
+  m.bindPopup(`<b>${p.time}</b> ${p.name}<br>${stripEmoji(p.cat)}`);
   m.on('mouseover',()=>{m.openPopup(); showDetail(p);});
   m.on('click',()=>select(p,true));
   markers[p.id]=m;
@@ -77,35 +99,66 @@ map.fitBounds(L.featureGroup(Object.values(markers)).getBounds().pad(0.2));
 
 // ===== timeline (구간 이동 포함, 트리플식) =====
 const tl = document.getElementById('timeline');
-tl.innerHTML = list.map((p,i)=>`
-  <div class="tl-leg"><span class="tl-leg-line"></span>
-    <span class="tl-leg-txt">${p.move.mode} ${p.move.min}${p.move.cost!=='-'?' · '+p.move.cost:''} <em>${p.move.note}</em></span>
+tl.innerHTML = list.map((p,i)=>{
+  const km = T.placeKindMeta[p.kind] || {icon:'',label:'',color:'#888'};
+  return `
+  <div class="tl-leg" data-kind="${p.kind}"><span class="tl-leg-line"></span>
+    <span class="tl-leg-txt">${stripEmoji(p.move.mode)} ${p.move.min}${p.move.cost!=='-'?' · '+p.move.cost:''} <em>${p.move.note}</em></span>
   </div>
-  <div class="tl-item" data-id="${p.id}">
+  <div class="tl-item" data-id="${p.id}" data-kind="${p.kind}">
     <div class="tl-num" style="background:${color}">${i+1}</div>
     <div>
-      <div class="tl-time">🕒 ${p.time} <span class="tl-stay">· ${p.stay} 머무름</span></div>
+      <div class="tl-time">${p.time} <span class="tl-stay">· ${p.stay} 머무름</span></div>
       <div class="tl-name">${p.name} ${p.badge?`<span class="tl-badge">${p.badge}</span>`:''}</div>
-      <div class="tl-cat">${p.cat}</div>
+      <div class="tl-cat"><span class="tl-kind" style="color:${km.color}; border-color:${km.color}66">${km.icon} ${km.label}</span> ${stripEmoji(p.cat)}</div>
     </div>
-  </div>`).join('');
+  </div>`;
+}).join('');
 tl.querySelectorAll('.tl-item').forEach(el=>{
   const p = list.find(x=>x.id==el.dataset.id);
   el.onmouseenter=()=>showDetail(p);
   el.onclick=()=>select(p,true);
 });
 
+// ===== 분류 필터 ([분류] 메뉴) =====
+const kindBar = document.getElementById('kindBar');
+const kindOrder = Object.keys(T.placeKindMeta);
+const kindsInDay = [...new Set(list.map(p=>p.kind))].sort((a,b)=>kindOrder.indexOf(a)-kindOrder.indexOf(b));
+kindBar.innerHTML = ['all', ...kindsInDay].map(k=>{
+  if(k==='all') return `<button class="kind-chip active" data-kind="all">전체 <b>${list.length}</b></button>`;
+  const m=T.placeKindMeta[k], n=list.filter(p=>p.kind===k).length;
+  return `<button class="kind-chip" data-kind="${k}" style="--kc:${m.color}">${m.icon} ${m.label} <b>${n}</b></button>`;
+}).join('');
+function applyFilter(k){
+  kindBar.querySelectorAll('.kind-chip').forEach(c=>c.classList.toggle('active', c.dataset.kind===k));
+  tl.querySelectorAll('.tl-item').forEach(el=>{
+    const p=list.find(x=>x.id==el.dataset.id);
+    el.style.display = (k==='all'||p.kind===k)?'':'none';
+  });
+  tl.querySelectorAll('.tl-leg').forEach(el=>{ el.style.display=(k==='all'||el.dataset.kind===k)?'':'none'; });
+  const shown=[];
+  list.forEach(p=>{
+    const show = k==='all'||p.kind===k;
+    if(show){ if(!map.hasLayer(markers[p.id])) markers[p.id].addTo(map); shown.push(markers[p.id]); }
+    else if(map.hasLayer(markers[p.id])) map.removeLayer(markers[p.id]);
+  });
+  if(shown.length) map.fitBounds(L.featureGroup(shown).getBounds().pad(0.25));
+  const firstVis = list.find(p=>k==='all'||p.kind===k);
+  if(firstVis) showDetail(firstVis);
+}
+kindBar.querySelectorAll('.kind-chip').forEach(c=>c.onclick=()=>applyFilter(c.dataset.kind));
+
 // ===== detail =====
 function showDetail(p){
   document.getElementById('detail').innerHTML = `
     <span class="d-day" style="background:${color}">${T.dayLabel[p.day]}</span>
-    <div class="d-time">🕒 ${p.time}</div>
+    <div class="d-time">${p.time}</div>
     <div class="d-name">${p.name} ${p.badge?`<span class="tl-badge">${p.badge}</span>`:''}</div>
-    <div class="d-cat">${p.cat} · ⏱️ ${p.stay} 머무름</div>
-    <div class="d-leg">🚉 <b>오는 길</b> ${p.move.mode} ${p.move.min}${p.move.cost!=='-'?' · '+p.move.cost:''} <span>(${p.move.note})</span></div>
-    <div class="d-desc">${p.desc}</div>
-    <div class="d-tips">💡 ${p.tips}</div>
-    <div class="d-addr">📍 ${p.addr}</div>
+    <div class="d-cat">${stripEmoji(p.cat)} · ${p.stay} 머무름</div>
+    <div class="d-leg"><b>오는 길</b> ${stripEmoji(p.move.mode)} ${p.move.min}${p.move.cost!=='-'?' · '+p.move.cost:''} <span>(${p.move.note})</span></div>
+    <div class="d-desc">${stripEmoji(p.desc)}</div>
+    <div class="d-tips">${stripEmoji(p.tips)}</div>
+    <div class="d-addr">${p.addr}</div>
     <div class="d-actions">
       <a href="https://www.google.com/maps/search/?api=1&query=${p.lat},${p.lng}" target="_blank">구글맵 보기</a>
       <a href="https://www.google.com/maps/dir/?api=1&destination=${p.lat},${p.lng}&travelmode=transit" target="_blank">길찾기</a>
@@ -116,7 +169,10 @@ function select(p, fly){
   if(fly){ map.flyTo([p.lat,p.lng],14,{duration:.8}); markers[p.id].openPopup(); }
   document.querySelectorAll('.tl-item').forEach(el=>el.classList.toggle('sel', el.dataset.id==p.id));
 }
-showDetail(list[0]);
+// URL ?kind= 파라미터로 초기 필터 (상단 메가메뉴에서 진입)
+const initKind = params.get('kind');
+const validKind = initKind && T.placeKindMeta[initKind] && list.some(p=>p.kind===initKind);
+applyFilter(validKind ? initKind : 'all');
 
 // ===== 오늘 경로 =====
 document.getElementById('routeBtn').onclick=()=>{
@@ -135,7 +191,7 @@ document.getElementById('kmlBtn').onclick=()=>{
     const ls=T.places.filter(p=>p.day===d);
     let pm='';
     ls.forEach((p,i)=>{
-      const desc=`🕒 ${p.time} · ${p.stay}\n${p.cat}\n\n🚉 ${p.move.mode} ${p.move.min} ${p.move.cost!=='-'?'· '+p.move.cost:''}\n(${p.move.note})\n\n${p.desc}\n\n💡 ${p.tips.replace(/<\/?b>/g,'')}\n\n📍 ${p.addr}`;
+      const desc=`Time ${p.time} · ${p.stay}\n${stripEmoji(p.cat)}\n\nMove ${stripEmoji(p.move.mode)} ${p.move.min} ${p.move.cost!=='-'?'· '+p.move.cost:''}\n(${p.move.note})\n\n${stripEmoji(p.desc)}\n\nTip ${stripEmoji(p.tips.replace(/<\/?b>/g,''))}\n\nAddress ${p.addr}`;
       pm+=`<Placemark><name>${i+1}. ${esc(p.name)}</name><description><![CDATA[${desc}]]></description><styleUrl>#day${d}</styleUrl><Point><coordinates>${p.lng},${p.lat},0</coordinates></Point></Placemark>`;
     });
     const coords=ls.map(p=>`${p.lng},${p.lat},0`).join(' ');

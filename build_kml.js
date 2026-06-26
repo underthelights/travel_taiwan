@@ -7,6 +7,7 @@ eval(code);
 const T = window.TRIP;
 
 const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const clean = s => String(s || '').replace(/[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\uFE0F]/gu,'').replace(/<\/?b>/g,'').replace(/\s+/g,' ').trim();
 
 let styles = '';
 [1,2,3].forEach(d=>{
@@ -24,17 +25,17 @@ let folders = '';
   let placemarks = '';
   list.forEach((p,i)=>{
     const desc = [
-      `🕒 ${p.time} · 머무는 시간 ${p.stay}`,
-      `${p.cat}`,
+      `Time ${p.time} · 머무는 시간 ${p.stay}`,
+      `${clean(p.cat)}`,
       ``,
-      `🚉 이동: ${p.move.mode} ${p.move.min} ${p.move.cost!=='-'?'· '+p.move.cost:''}`,
+      `Move: ${clean(p.move.mode)} ${p.move.min} ${p.move.cost!=='-'?'· '+p.move.cost:''}`,
       `   (${p.move.note})`,
       ``,
-      p.desc,
+      clean(p.desc),
       ``,
-      `💡 ${p.tips.replace(/<\/?b>/g,'')}`,
+      `Tip ${clean(p.tips)}`,
       ``,
-      `📍 ${p.addr}`,
+      `Address ${p.addr}`,
     ].join('\n');
     placemarks += `    <Placemark>
       <name>${i+1}. ${esc(p.name)}</name>
@@ -65,4 +66,4 @@ ${styles}${folders}</Document>
 </kml>`;
 
 fs.writeFileSync(__dirname + '/taiwan_trip.kml', kml, 'utf8');
-console.log('✅ taiwan_trip.kml 생성 완료 (' + T.places.length + ' 장소, 3일)');
+console.log('taiwan_trip.kml 생성 완료 (' + T.places.length + ' 장소, 3일)');
