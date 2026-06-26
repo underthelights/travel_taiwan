@@ -85,7 +85,7 @@ tl.innerHTML = list.map((p,i)=>`
     <div class="tl-num" style="background:${color}">${i+1}</div>
     <div>
       <div class="tl-time">🕒 ${p.time} <span class="tl-stay">· ${p.stay} 머무름</span></div>
-      <div class="tl-name">${p.name}</div>
+      <div class="tl-name">${p.name} ${p.badge?`<span class="tl-badge">${p.badge}</span>`:''}</div>
       <div class="tl-cat">${p.cat}</div>
     </div>
   </div>`).join('');
@@ -100,7 +100,7 @@ function showDetail(p){
   document.getElementById('detail').innerHTML = `
     <span class="d-day" style="background:${color}">${T.dayLabel[p.day]}</span>
     <div class="d-time">🕒 ${p.time}</div>
-    <div class="d-name">${p.name}</div>
+    <div class="d-name">${p.name} ${p.badge?`<span class="tl-badge">${p.badge}</span>`:''}</div>
     <div class="d-cat">${p.cat} · ⏱️ ${p.stay} 머무름</div>
     <div class="d-leg">🚉 <b>오는 길</b> ${p.move.mode} ${p.move.min}${p.move.cost!=='-'?' · '+p.move.cost:''} <span>(${p.move.note})</span></div>
     <div class="d-desc">${p.desc}</div>
