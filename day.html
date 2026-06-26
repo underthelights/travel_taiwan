@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>일자별 코스 ㅣ 타이베이·신주</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="nav">
+  <span class="logo">🇹🇼 타이베이·신주</span>
+  <a href="index.html">홈</a>
+  <a href="day.html?d=1" class="d1" id="nav1">1일차</a>
+  <a href="day.html?d=2" class="d2" id="nav2">2일차</a>
+  <a href="day.html?d=3" class="d3" id="nav3">3일차</a>
+  <a href="info.html">준비물·팁</a>
+</nav>
+
+<div class="wrap">
+  <div class="dayhead">
+    <span class="tag" id="dTag"></span>
+    <div>
+      <h1 id="dTitle"></h1>
+      <p id="dTheme"></p>
+    </div>
+    <div class="spacer" style="flex:1"></div>
+    <a class="routebtn" id="routeBtn">🗺️ 오늘 경로 (구글맵)</a>
+    <a class="routebtn" id="kmlBtn" style="background:#3ea6ff; color:#001">📥 구글맵 KML</a>
+  </div>
+
+  <div class="daylayout">
+    <div>
+      <div class="timeline" id="timeline"></div>
+    </div>
+    <div>
+      <div id="dayMap"></div>
+      <div class="detail" id="detail"></div>
+    </div>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script>
+const T = window.TRIP;
+const params = new URLSearchParams(location.search);
+let day = parseInt(params.get('d'))||1;
+if(![1,2,3].includes(day)) day=1;
+
+// nav active
+document.getElementById('nav'+day).classList.add('active');
+
+const list = T.places.filter(p=>p.day===day);
+const color = T.dayColor[day];
+
+document.getElementById('dTag').textContent = T.dayLabel[day];
+document.getElementById('dTag').style.background = color;
+document.getElementById('dTitle').textContent = T.dayTheme[day];
+document.getElementById('dTheme').textContent = list.length+'곳 · 시간순 코스';
+
+// ===== map =====
+const map = L.map('dayMap').setView([list[0].lat,list[0].lng],11);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap'}).addTo(map);
+const markers={};
+list.forEach((p,i)=>{
+  const icon = L.divIcon({className:'', html:`<div class="marker-pin" style="background:${color}"><span>${i+1}</span></div>`, iconSize:[26,26], iconAnchor:[13,26], popupAnchor:[0,-26]});
+  const m = L.marker([p.lat,p.lng],{icon}).addTo(map);
+  m.bindPopup(`<b>${p.time}</b> ${p.name}<br>${p.cat}`);
+  m.on('mouseover',()=>{m.openPopup(); showDetail(p);});
+  m.on('click',()=>select(p,true));
+  markers[p.id]=m;
+});
+// route line
+L.polyline(list.map(p=>[p.lat,p.lng]),{color,weight:2,opacity:.5,dashArray:'6 8'}).addTo(map);
+map.fitBounds(L.featureGroup(Object.values(markers)).getBounds().pad(0.2));
+
+// ===== timeline (구간 이동 포함, 트리플식) =====
+const tl = document.getElementById('timeline');
+tl.innerHTML = list.map((p,i)=>`
+  <div class="tl-leg"><span class="tl-leg-line"></span>
+    <span class="tl-leg-txt">${p.move.mode} ${p.move.min}${p.move.cost!=='-'?' · '+p.move.cost:''} <em>${p.move.note}</em></span>
+  </div>
+  <div class="tl-item" data-id="${p.id}">
+    <div class="tl-num" style="background:${color}">${i+1}</div>
+    <div>
+      <div class="tl-time">🕒 ${p.time} <span class="tl-stay">· ${p.stay} 머무름</span></div>
+      <div class="tl-name">${p.name}</div>
+      <div class="tl-cat">${p.cat}</div>
+    </div>
+  </div>`).join('');
+tl.querySelectorAll('.tl-item').forEach(el=>{
+  const p = list.find(x=>x.id==el.dataset.id);
+  el.onmouseenter=()=>showDetail(p);
+  el.onclick=()=>select(p,true);
+});
+
+// ===== detail =====
+function showDetail(p){
+  document.getElementById('detail').innerHTML = `
+    <span class="d-day" style="background:${color}">${T.dayLabel[p.day]}</span>
+    <div class="d-time">🕒 ${p.time}</div>
+    <div class="d-name">${p.name}</div>
+    <div class="d-cat">${p.cat} · ⏱️ ${p.stay} 머무름</div>
+    <div class="d-leg">🚉 <b>오는 길</b> ${p.move.mode} ${p.move.min}${p.move.cost!=='-'?' · '+p.move.cost:''} <span>(${p.move.note})</span></div>
+    <div class="d-desc">${p.desc}</div>
+    <div class="d-tips">💡 ${p.tips}</div>
+    <div class="d-addr">📍 ${p.addr}</div>
+    <div class="d-actions">
+      <a href="https://www.google.com/maps/search/?api=1&query=${p.lat},${p.lng}" target="_blank">구글맵 보기</a>
+      <a href="https://www.google.com/maps/dir/?api=1&destination=${p.lat},${p.lng}&travelmode=transit" target="_blank">길찾기</a>
+    </div>`;
+}
+function select(p, fly){
+  showDetail(p);
+  if(fly){ map.flyTo([p.lat,p.lng],14,{duration:.8}); markers[p.id].openPopup(); }
+  document.querySelectorAll('.tl-item').forEach(el=>el.classList.toggle('sel', el.dataset.id==p.id));
+}
+showDetail(list[0]);
+
+// ===== 오늘 경로 =====
+document.getElementById('routeBtn').onclick=()=>{
+  const origin=`${list[0].lat},${list[0].lng}`;
+  const dest=`${list[list.length-1].lat},${list[list.length-1].lng}`;
+  const way=list.slice(1,-1).map(p=>`${p.lat},${p.lng}`).join('|');
+  window.open(`https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${dest}&waypoints=${way}&travelmode=transit`,'_blank');
+};
+
+// ===== KML 내보내기 (구글 마이맵 import용) — 전체 3일 =====
+document.getElementById('kmlBtn').onclick=()=>{
+  const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  let styles='', folders='';
+  [1,2,3].forEach(d=>{
+    styles+=`<Style id="day${d}"><IconStyle><color>${T.kmlColor[d]}</color><scale>1.1</scale><Icon><href>http://maps.google.com/mapfiles/kml/paddle/${d}.png</href></Icon></IconStyle><LineStyle><color>${T.kmlColor[d]}</color><width>3</width></LineStyle></Style>`;
+    const ls=T.places.filter(p=>p.day===d);
+    let pm='';
+    ls.forEach((p,i)=>{
+      const desc=`🕒 ${p.time} · ${p.stay}\n${p.cat}\n\n🚉 ${p.move.mode} ${p.move.min} ${p.move.cost!=='-'?'· '+p.move.cost:''}\n(${p.move.note})\n\n${p.desc}\n\n💡 ${p.tips.replace(/<\/?b>/g,'')}\n\n📍 ${p.addr}`;
+      pm+=`<Placemark><name>${i+1}. ${esc(p.name)}</name><description><![CDATA[${desc}]]></description><styleUrl>#day${d}</styleUrl><Point><coordinates>${p.lng},${p.lat},0</coordinates></Point></Placemark>`;
+    });
+    const coords=ls.map(p=>`${p.lng},${p.lat},0`).join(' ');
+    pm+=`<Placemark><name>${esc(T.dayLabel[d])} 동선</name><styleUrl>#day${d}</styleUrl><LineString><tessellate>1</tessellate><coordinates>${coords}</coordinates></LineString></Placemark>`;
+    folders+=`<Folder><name>${esc(T.dayLabel[d])} — ${esc(T.dayTheme[d])}</name>${pm}</Folder>`;
+  });
+  const kml=`<?xml version="1.0" encoding="UTF-8"?>\n<kml xmlns="http://www.opengis.net/kml/2.2"><Document><name>${esc(T.meta.title)}</name>${styles}${folders}</Document></kml>`;
+  const blob=new Blob([kml],{type:'application/vnd.google-earth.kml+xml'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='taiwan_trip.kml'; a.click();
+};
+</script>
+</body>
+</html>

@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document>
+  <name>타이베이 · 신주 2박3일 (8/1(토) ~ 8/3(월) · 타이중 IN/OUT · 1인)</name>
+  <description><![CDATA[진에어 타이중 IN/OUT · 왕복 ₩298,700 · 수하물 15kg 포함]]></description>
+  <Style id="day1">
+    <IconStyle><color>ffffa63e</color><scale>1.1</scale>
+      <Icon><href>http://maps.google.com/mapfiles/kml/paddle/1.png</href></Icon>
+    </IconStyle>
+    <LineStyle><color>ffffa63e</color><width>3</width></LineStyle>
+  </Style>
+  <Style id="day2">
+    <IconStyle><color>ff9ad05e</color><scale>1.1</scale>
+      <Icon><href>http://maps.google.com/mapfiles/kml/paddle/2.png</href></Icon>
+    </IconStyle>
+    <LineStyle><color>ff9ad05e</color><width>3</width></LineStyle>
+  </Style>
+  <Style id="day3">
+    <IconStyle><color>ff8a8aff</color><scale>1.1</scale>
+      <Icon><href>http://maps.google.com/mapfiles/kml/paddle/3.png</href></Icon>
+    </IconStyle>
+    <LineStyle><color>ff8a8aff</color><width>3</width></LineStyle>
+  </Style>
+  <Folder>
+    <name>1일차 · 8/1(토) — 타이중 도착 → 신주(TSMC) → 타이베이</name>
+    <Placemark>
+      <name>1. 타이중 공항 (RMQ)</name>
+      <description><![CDATA[🕒 09:40 · 머무는 시간 40분
+✈️ 도착 · 입국
+
+🚉 이동: ✈️ 비행기 2h45 
+   (진에어 LJ0735 인천 출발)
+
+진에어 LJ0735 도착. 작은 공항이라 입국이 빠릅니다. 짐 찾고 → 유심/EasyCard 준비 → 고속철 타이중역(신우일)으로 이동.
+
+💡 바로 할 일 ① EasyCard 구입+충전 ② NT$ 현금 환전/인출 ③ 택시 or 시내버스로 고속철역.
+
+📍 No. 1690, Zhonghang Rd, Qingshui, Taichung]]></description>
+      <styleUrl>#day1</styleUrl>
+      <Point><coordinates>120.6213,24.2647,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>2. 타이중 고속철역 (신우일)</name>
+      <description><![CDATA[🕒 10:40 · 머무는 시간 30분
+🚄 THSR 환승
+
+🚉 이동: 🚕 택시 40분 · NT$450
+   (공항 → 신우일역 (버스 156번도 가능))
+
+타이중 고속철역에서 북쪽 신주(Hsinchu)행 탑승. 외국인은 클룩/KKday 할인권이 더 저렴. T Express 앱으로 시간표·예매.
+
+💡 고속철 표 없이 가도 15~30분에 1대씩 자주 옴.
+
+📍 No. 8, Zhanqu 2nd Rd, Wuri, Taichung]]></description>
+      <styleUrl>#day1</styleUrl>
+      <Point><coordinates>120.6155,24.1124,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>3. 신주 · TSMC 과학단지</name>
+      <description><![CDATA[🕒 11:30 · 머무는 시간 1시간
+🔬 반도체 성지
+
+🚉 이동: 🚄 고속철+🚕 25분 · NT$310
+   (타이중→신주역 20분 + 택시 10분)
+
+세계 반도체 1위 TSMC 본진. 신주 과학단지 일대 분위기 체험. (내부 견학 일반 불가, 외관·전시관 중심)
+
+💡 팁 단지는 회사 밀집지구. 가볍게 보고 신주 시내 야시장으로.
+
+📍 Hsinchu Science Park, Hsinchu]]></description>
+      <styleUrl>#day1</styleUrl>
+      <Point><coordinates>121.008,24.774,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>4. 신주 도시성황묘 야시장</name>
+      <description><![CDATA[🕒 13:00 · 머무는 시간 1시간
+🍜 점심 · 먹거리
+
+🚉 이동: 🚕 택시 25분 · NT$300
+   (과학단지 → 신주 시내)
+
+신주 대표 먹거리 골목. 공환(摃丸·어묵완자), 미펀(쌀국수) 등 신주 명물로 점심.
+
+💡 현금 필수 로컬 노점은 카드 거의 안 됨. NT$ 소액권 준비.
+
+📍 No. 75, Zhongshan Rd, North District, Hsinchu]]></description>
+      <styleUrl>#day1</styleUrl>
+      <Point><coordinates>120.9665,24.8047,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>5. 타이베이역 · 숙소 체크인</name>
+      <description><![CDATA[🕒 15:30 · 머무는 시간 1시간
+🏨 숙소
+
+🚉 이동: 🚄 고속철 35분 · NT$390
+   (신주 → 타이베이)
+
+타이베이 메인역 근처 숙소 체크인. 교통 허브라 어디든 편함.
+
+💡 숙소 위치 타이베이역·시먼딩·중샤오푸싱 라인이 초보에게 가장 편리.
+
+📍 No. 3, Beiping W Rd, Zhongzheng, Taipei]]></description>
+      <styleUrl>#day1</styleUrl>
+      <Point><coordinates>121.517,25.0478,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>6. 스린 야시장 (士林夜市)</name>
+      <description><![CDATA[🕒 18:30 · 머무는 시간 2시간
+🌃 저녁 · 야시장
+
+🚉 이동: 🚇 MRT 25분 · NT$30
+   (타이베이역 → 젠탄역(스린))
+
+타이베이 최대 야시장. 대왕 치킨스테이크(하오따지), 굴전, 버블티 천국. 첫날밤 분위기.
+
+💡 버블티 본고장 쩐주나이차 꼭. 소매치기 주의.
+
+📍 No. 101, Jihe Rd, Shilin, Taipei]]></description>
+      <styleUrl>#day1</styleUrl>
+      <Point><coordinates>121.524,25.088,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>1일차 · 8/1(토) 동선</name>
+      <styleUrl>#day1</styleUrl>
+      <LineString><tessellate>1</tessellate><coordinates>120.6213,24.2647,0 120.6155,24.1124,0 121.008,24.774,0 120.9665,24.8047,0 121.517,25.0478,0 121.524,25.088,0</coordinates></LineString>
+    </Placemark>
+  </Folder>
+  <Folder>
+    <name>2일차 · 8/2(일) — 타이베이 풀데이</name>
+    <Placemark>
+      <name>1. 푸항또우장 (阜杭豆漿)</name>
+      <description><![CDATA[🕒 08:00 · 머무는 시간 1시간
+🥟 아침 · 오픈런
+
+🚉 이동: 🚇 MRT 12분 · NT$20
+   (숙소 → 산다오쓰역 5번출구 도보 1분)
+
+타이베이 아침 성지. 화산시장 2층. 더우장(콩국)+딴빙+사오빙요우탸오 조합.
+
+💡 오픈런 8시 전 도착 권장. 9시 넘으면 줄 폭발.
+
+📍 2F, No. 108, Zhongxiao E Rd Sec 1, Huashan Market, Taipei]]></description>
+      <styleUrl>#day2</styleUrl>
+      <Point><coordinates>121.524,25.0444,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>2. 중정기념당</name>
+      <description><![CDATA[🕒 09:30 · 머무는 시간 1시간
+🏛️ 랜드마크
+
+🚉 이동: 🚇 MRT 10분 · NT$20
+   (산다오쓰 → 중정기념당역)
+
+거대한 광장과 위병 교대식으로 유명. 자유광장 패방이 포토스팟.
+
+💡 위병교대 매시 정각(09~17시) 진행.
+
+📍 No. 21, Zhongshan S Rd, Zhongzheng, Taipei]]></description>
+      <styleUrl>#day2</styleUrl>
+      <Point><coordinates>121.5219,25.0346,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>3. 융캉제 (永康街)</name>
+      <description><![CDATA[🕒 11:30 · 머무는 시간 1.5시간
+🍧 맛집거리
+
+🚉 이동: 🚶 도보 12분 
+   (중정기념당 → 융캉제 (또는 MRT 1정거장))
+
+딘타이펑 본점·망고빙수(스무시하우스)·우육면 맛집 밀집. 점심+디저트 한 번에.
+
+💡 딘타이펑 샤오롱바오 원조. 대기 길면 앱 예약.
+
+📍 Yongkang St, Da’an, Taipei]]></description>
+      <styleUrl>#day2</styleUrl>
+      <Point><coordinates>121.5295,25.0327,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>4. 타이베이 101</name>
+      <description><![CDATA[🕒 14:00 · 머무는 시간 2시간
+🗼 전망대
+
+🚉 이동: 🚇 MRT 15분 · NT$25
+   (둥먼역 → 타이베이101역)
+
+타이베이 상징 마천루. 89층 전망대 + 초고속 엘리베이터. 아래 쇼핑몰·푸드코트도 충실.
+
+💡 전망대 해질녘 표가 인기. 클룩 사전 예매 할인.
+
+📍 No. 7, Xinyi Rd Sec 5, Xinyi, Taipei]]></description>
+      <styleUrl>#day2</styleUrl>
+      <Point><coordinates>121.5645,25.0339,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>5. 시먼딩 (西門町)</name>
+      <description><![CDATA[🕒 17:00 · 머무는 시간 1.5시간
+🛍️ 쇼핑·먹거리
+
+🚉 이동: 🚇 MRT 25분 · NT$30
+   (타이베이101 → 시먼역)
+
+타이베이의 명동. 쇼핑·길거리음식·아종몐셴(굴국수). 젊은 거리 분위기.
+
+💡 아종몐셴 줄 서서 먹는 굴/곱창 국수. 서서 먹는 게 국룰.
+
+📍 Ximending, Wanhua, Taipei]]></description>
+      <styleUrl>#day2</styleUrl>
+      <Point><coordinates>121.5074,25.0421,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>6. 라오허제 야시장 (饒河街)</name>
+      <description><![CDATA[🕒 19:30 · 머무는 시간 1.5시간
+🌃 저녁 · 야시장
+
+🚉 이동: 🚇 MRT 25분 · NT$30
+   (시먼역 → 송산역)
+
+송산역 옆. 후자오빙(후추빵)이 명물. 스린보다 로컬·아담해서 돌기 편함.
+
+💡 후자오빙 입구 화덕집이 시그니처. 송산츠유궁 사원도 옆에.
+
+📍 Raohe St, Songshan, Taipei]]></description>
+      <styleUrl>#day2</styleUrl>
+      <Point><coordinates>121.5773,25.0509,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>2일차 · 8/2(일) 동선</name>
+      <styleUrl>#day2</styleUrl>
+      <LineString><tessellate>1</tessellate><coordinates>121.524,25.0444,0 121.5219,25.0346,0 121.5295,25.0327,0 121.5645,25.0339,0 121.5074,25.0421,0 121.5773,25.0509,0</coordinates></LineString>
+    </Placemark>
+  </Folder>
+  <Folder>
+    <name>3일차 · 8/3(월) — 타이베이 오전 → 타이중 귀국</name>
+    <Placemark>
+      <name>1. 룽산쓰 (龍山寺)</name>
+      <description><![CDATA[🕒 09:00 · 머무는 시간 1시간
+⛩️ 사원
+
+🚉 이동: 🚇 MRT 10분 · NT$20
+   (숙소 → 룽산쓰역)
+
+타이베이 최고 오래된 사원. 아침 참배 분위기와 화려한 단청. 근처 보피랴오 옛거리도 함께.
+
+💡 마지막 날 가볍게 둘러보고 기념품·우롱차 쇼핑.
+
+📍 No. 211, Guangzhou St, Wanhua, Taipei]]></description>
+      <styleUrl>#day3</styleUrl>
+      <Point><coordinates>121.4999,25.0369,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>2. 타이베이역 → 고속철 남하</name>
+      <description><![CDATA[🕒 11:30 · 머무는 시간 -
+🚄 귀국 이동
+
+🚉 이동: 🚇 MRT 10분 · NT$20
+   (룽산쓰 → 타이베이역 (짐 픽업))
+
+짐 찾아 타이베이역에서 고속철 타이중행 탑승(약 50분). 귀국편 15:00까지 RMQ 공항 도착 목표.
+
+💡 시간 역산 17:30 비행 → 15:00 공항 → 14:00 신우일역 → 13:00 타이베이 출발 안전.
+
+📍 No. 3, Beiping W Rd, Zhongzheng, Taipei]]></description>
+      <styleUrl>#day3</styleUrl>
+      <Point><coordinates>121.517,25.0478,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>3. 타이중 공항 (RMQ) 출국</name>
+      <description><![CDATA[🕒 15:00 · 머무는 시간 -
+✈️ 귀국
+
+🚉 이동: 🚄 고속철+🚕 1h30 · NT$1,150
+   (타이베이→타이중 고속철 50분 + 택시 35분)
+
+진에어 LJ0738 (17:30 출발). 신우일역→공항 택시 약 30~40분. 면세·체크인 여유있게.
+
+💡 마지막 EasyCard 잔액 환불 가능. 위탁 15kg 초과 시 온라인 사전구매가 쌌음.
+
+📍 No. 1690, Zhonghang Rd, Qingshui, Taichung]]></description>
+      <styleUrl>#day3</styleUrl>
+      <Point><coordinates>120.6213,24.2647,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>3일차 · 8/3(월) 동선</name>
+      <styleUrl>#day3</styleUrl>
+      <LineString><tessellate>1</tessellate><coordinates>121.4999,25.0369,0 121.517,25.0478,0 120.6213,24.2647,0</coordinates></LineString>
+    </Placemark>
+  </Folder>
+</Document>
+</kml>

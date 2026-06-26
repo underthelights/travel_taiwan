@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>준비물·팁 ㅣ 타이베이·신주</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="nav">
+  <span class="logo">🇹🇼 타이베이·신주</span>
+  <a href="index.html">홈</a>
+  <a href="day.html?d=1" class="d1">1일차</a>
+  <a href="day.html?d=2" class="d2">2일차</a>
+  <a href="day.html?d=3" class="d3">3일차</a>
+  <a href="info.html" class="active">준비물·팁</a>
+</nav>
+
+<div class="wrap">
+  <div class="section-title">🗺️ 내 구글맵에 넣기 (My Maps Import)</div>
+  <div class="card">
+    <div class="cardh">KML 파일로 개인 구글 지도에 그대로 불러오기</div>
+    <div class="tip"><b>1단계</b> <a href="taiwan_trip.kml" download style="color:var(--accent)">📥 taiwan_trip.kml 다운로드</a></div>
+    <div class="tip"><b>2단계</b> <a href="https://www.google.com/maps/d/" target="_blank" style="color:var(--accent)">Google My Maps</a> 접속 → [새 지도 만들기]</div>
+    <div class="tip"><b>3단계</b> [가져오기] 클릭 → 받은 <b>taiwan_trip.kml</b> 업로드</div>
+    <div class="tip"><b>완성</b> 1·2·3일차가 레이어로 자동 분리되고, 핀·동선·설명이 그대로 들어갑니다. 폰 구글맵 [저장됨]에서도 열람 가능.</div>
+  </div>
+
+  <div class="section-title">✅ 예약 우선순위</div>
+  <div class="card"><ol class="prio" id="prioBox"></ol></div>
+
+  <div class="section-title">🔰 초보 팁 (네이버 블로그 반영)</div>
+  <div class="card" id="tipBox"></div>
+
+  <div class="section-title">🧳 수하물 규정 (진에어)</div>
+  <div class="grid2">
+    <div class="card">
+      <div class="cardh">위탁 수하물</div>
+      <div class="tip"><b>15kg</b> 무료 포함 (가는편·오는편 모두)</div>
+      <div class="tip">세 변 합 ≤ 203cm, 단일 가방 ≤ 32kg</div>
+      <div class="tip">초과 시 온라인 사전구매 약 ₩55,000 (공항보다 쌈)</div>
+    </div>
+    <div class="card">
+      <div class="cardh">기내 수하물 (별도)</div>
+      <div class="tip"><b>10kg</b> · 세 변 합 ≤ 115cm + 노트북가방 1개</div>
+      <div class="tip"><b>보조배터리·라이터</b> 위탁 금지 → 반드시 기내(손가방)</div>
+      <div class="tip">액체는 100ml 이하, 1L 지퍼백 1개</div>
+    </div>
+  </div>
+
+  <div class="section-title">💰 예산 상세 (1인)</div>
+  <div class="card"><ul class="budget" id="budgetBox"></ul></div>
+
+  <div class="section-title">🚄 타이중 ↔ 타이베이 이동</div>
+  <div class="grid3">
+    <div class="card"><div class="cardh">🥇 고속철 THSR</div><div class="tip"><b>46~60분</b> · 약 ₩27,900<br>가장 빠름. 15~30분 간격 운행</div></div>
+    <div class="card"><div class="cardh">🥈 타철 자강호</div><div class="tip"><b>약 2시간</b> · 약 ₩16,000<br>시내역 직결, 더 저렴</div></div>
+    <div class="card"><div class="cardh">🥉 시외버스</div><div class="tip"><b>2.5~3시간</b> · 약 ₩13,000<br>제일 쌈, 제일 느림</div></div>
+  </div>
+  <p style="color:var(--sub); font-size:12.5px; margin-top:10px; line-height:1.6">
+    ※ 타이중 공항(RMQ)은 고속철역(신우일)과 떨어져 있어요. 공항↔신우일역 택시 약 30~40분. 귀국날은 <b>17:30 비행 → 15:00 공항 → 13:00 타이베이 출발</b>로 역산하세요.
+  </p>
+</div>
+
+<script src="data.js"></script>
+<script>
+const T = window.TRIP;
+document.getElementById('prioBox').innerHTML = T.priority.map(p=>`<li>${p}</li>`).join('');
+document.getElementById('tipBox').innerHTML = T.tips.map(t=>`<div class="tip"><b>${t[0]}</b> ${t[1]}</div>`).join('');
+document.getElementById('budgetBox').innerHTML =
+  T.budget.map(b=>`<li>${b[0]} <b>${b[1]}</b></li>`).join('') +
+  `<li class="total"><b>합계</b><b>${T.budgetTotal}</b></li>`;
+</script>
+</body>
+</html>

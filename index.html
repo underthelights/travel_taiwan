@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>대만 타이베이·신주 2박3일 ㅣ 홈</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="nav">
+  <span class="logo">🇹🇼 타이베이·신주</span>
+  <a href="index.html" class="active">홈</a>
+  <a href="day.html?d=1" class="d1">1일차</a>
+  <a href="day.html?d=2" class="d2">2일차</a>
+  <a href="day.html?d=3" class="d3">3일차</a>
+  <a href="info.html">준비물·팁</a>
+</nav>
+
+<div class="wrap">
+  <div class="hero">
+    <h1 id="hTitle"></h1>
+    <p id="hSub"></p>
+    <span class="fare" id="hFare"></span>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="cardh">✈️ 항공편 (진에어 직항)</div>
+      <div id="flightBox"></div>
+    </div>
+    <div class="card">
+      <div class="cardh">💰 예산 (1인, 대략)</div>
+      <ul class="budget" id="budgetBox"></ul>
+    </div>
+  </div>
+
+  <div class="section-title">📅 일자별 코스</div>
+  <div class="grid3" id="dayCards"></div>
+
+  <div class="section-title">🗺️ 전체 지도
+    <a href="taiwan_trip.kml" download style="float:right; font-size:12px; font-weight:700; color:var(--accent); text-decoration:none; background:var(--panel2); border:1px solid var(--line); padding:5px 11px; border-radius:18px;">📥 구글맵 KML 받기</a>
+  </div>
+  <div id="homeMap"></div>
+</div>
+
+<script src="data.js"></script>
+<script>
+const T = window.TRIP;
+document.getElementById('hTitle').textContent = T.meta.title;
+document.getElementById('hSub').textContent = T.meta.sub;
+document.getElementById('hFare').textContent = '왕복 운임 ' + T.fare + ' · 수하물 15kg 포함';
+
+// flight
+document.getElementById('flightBox').innerHTML = T.flight.map(f=>`
+  <div class="flightrow"><b>${f.dir} ${f.code}</b><span>${f.time}</span></div>
+  <div class="flightrow"><span>${f.route}</span><span>${f.extra}</span></div>`).join('');
+
+// budget
+document.getElementById('budgetBox').innerHTML =
+  T.budget.map(b=>`<li>${b[0]} <b>${b[1]}</b></li>`).join('') +
+  `<li class="total"><b>합계</b><b>${T.budgetTotal}</b></li>`;
+
+// day cards
+document.getElementById('dayCards').innerHTML = [1,2,3].map(d=>{
+  const cnt = T.places.filter(p=>p.day===d).length;
+  return `<a class="daycard" href="day.html?d=${d}">
+    <span class="dc-tag" style="background:${T.dayColor[d]}">${T.dayLabel[d]}</span>
+    <h3>${T.dayTheme[d]}</h3>
+    <p>핀에 올리면 계획·꿀팁 표시 · 클릭 시 지도 이동</p>
+    <span class="dc-count">${cnt}곳 →</span>
+  </a>`;
+}).join('');
+
+// overview map
+const map = L.map('homeMap',{scrollWheelZoom:false}).setView([24.95,121.15],8);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap'}).addTo(map);
+const ms=[];
+T.places.forEach(p=>{
+  const order = T.places.filter(x=>x.day===p.day).indexOf(p)+1;
+  const icon = L.divIcon({className:'', html:`<div class="marker-pin" style="background:${T.dayColor[p.day]}"><span>${order}</span></div>`, iconSize:[26,26], iconAnchor:[13,26], popupAnchor:[0,-26]});
+  const m = L.marker([p.lat,p.lng],{icon}).addTo(map);
+  m.bindPopup(`<b>${p.time}</b> ${p.name}<br>${p.cat}<br><a href="day.html?d=${p.day}" style="color:#3ea6ff">${p.day}일차 상세 →</a>`);
+  ms.push(m);
+});
+map.fitBounds(L.featureGroup(ms).getBounds().pad(0.18));
+</script>
+</body>
+</html>

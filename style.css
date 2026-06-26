@@ -1,0 +1,117 @@
+*{box-sizing:border-box; margin:0; padding:0;}
+:root{
+  --bg:#0f1115; --panel:#171a21; --panel2:#1e2230; --line:#2a2f3d;
+  --txt:#e8ebf2; --sub:#9aa3b5; --accent:#3ea6ff; --accent2:#ffb13e;
+}
+html,body{height:100%;}
+body{
+  font-family:'Apple SD Gothic Neo','Pretendard',-apple-system,'Segoe UI',sans-serif;
+  background:var(--bg); color:var(--txt);
+}
+a{color:inherit;}
+
+/* ===== TOP NAV ===== */
+.nav{position:sticky; top:0; z-index:1000; display:flex; align-items:center; gap:4px;
+  background:rgba(17,20,27,.92); backdrop-filter:blur(10px); border-bottom:1px solid var(--line); padding:11px 18px;}
+.nav .logo{font-weight:800; font-size:15px; margin-right:14px; white-space:nowrap;}
+.nav a{text-decoration:none; color:var(--sub); font-weight:700; font-size:13px; padding:8px 13px; border-radius:20px; transition:.15s;}
+.nav a:hover{color:var(--txt); background:var(--panel2);}
+.nav a.active{color:#001; background:#fff;}
+.nav a.d1.active{background:var(--d1,#3ea6ff);} .nav a.d2.active{background:var(--d2,#5ed09a);} .nav a.d3.active{background:var(--d3,#ff8a8a);}
+.nav .spacer{flex:1;}
+
+/* ===== GENERIC ===== */
+.wrap{max-width:1100px; margin:0 auto; padding:22px 18px 60px;}
+.section-title{font-size:15px; font-weight:800; margin:26px 0 12px; letter-spacing:-.3px;}
+.card{background:var(--panel2); border:1px solid var(--line); border-radius:13px; padding:15px 16px;}
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+.grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+@media(max-width:780px){.grid2,.grid3{grid-template-columns:1fr;}}
+
+/* ===== HERO (home) ===== */
+.hero{background:linear-gradient(135deg,#1a2740,#171a21); border:1px solid var(--line); border-radius:16px; padding:22px; margin-bottom:6px;}
+.hero h1{font-size:26px; font-weight:800; letter-spacing:-.6px;}
+.hero p{color:var(--sub); font-size:13.5px; margin-top:6px;}
+.hero .fare{display:inline-block; margin-top:14px; background:#23314a; color:var(--accent2); font-weight:800; font-size:14px; padding:8px 14px; border-radius:24px;}
+
+/* flight rows */
+.flightrow{display:flex; justify-content:space-between; font-size:13px; padding:7px 0; border-bottom:1px dashed var(--line);}
+.flightrow:last-child{border:none;}
+.flightrow b{color:var(--txt);} .flightrow span{color:var(--sub);}
+.cardh{font-size:13px; color:var(--accent); margin-bottom:10px; font-weight:800; letter-spacing:.3px;}
+
+/* budget */
+.budget li{list-style:none; display:flex; justify-content:space-between; font-size:13px; padding:5px 0; color:var(--sub);}
+.budget li b{color:var(--txt);}
+.budget .total{border-top:1px solid var(--line); margin-top:6px; padding-top:8px; font-size:14px; color:var(--accent2);}
+
+/* priority / tips */
+.prio{counter-reset:p; padding-left:0;}
+.prio li{list-style:none; font-size:13px; color:var(--sub); padding:6px 0 6px 28px; position:relative; line-height:1.5;}
+.prio li::before{counter-increment:p; content:counter(p); position:absolute; left:0; top:5px; width:19px; height:19px; background:var(--accent); color:#001; font-weight:800; font-size:11px; border-radius:50%; display:flex; align-items:center; justify-content:center;}
+.tip{font-size:13px; color:var(--sub); line-height:1.6; padding:8px 0; border-bottom:1px dashed var(--line);}
+.tip:last-child{border:none;} .tip b{color:var(--accent2);}
+
+/* day entry cards (home) */
+.daycard{display:block; text-decoration:none; border-radius:14px; padding:18px; border:1px solid var(--line); background:var(--panel2); transition:.18s; position:relative; overflow:hidden;}
+.daycard:hover{transform:translateY(-4px); border-color:var(--accent);}
+.daycard .dc-tag{display:inline-block; font-size:11px; font-weight:800; color:#001; padding:3px 10px; border-radius:20px;}
+.daycard h3{font-size:18px; font-weight:800; margin:10px 0 5px;}
+.daycard p{color:var(--sub); font-size:12.5px; line-height:1.5;}
+.daycard .dc-count{position:absolute; right:16px; bottom:14px; font-size:12px; color:var(--sub);}
+
+/* mini map on home */
+#homeMap{height:340px; border-radius:14px; border:1px solid var(--line); margin-top:4px;}
+
+/* ===== DAY PAGE ===== */
+.dayhead{display:flex; align-items:center; gap:12px; margin-bottom:14px;}
+.dayhead .tag{font-size:12px; font-weight:800; color:#001; padding:4px 12px; border-radius:20px;}
+.dayhead h1{font-size:22px; font-weight:800;} .dayhead p{color:var(--sub); font-size:13px;}
+.daylayout{display:grid; grid-template-columns:330px 1fr; gap:16px;}
+@media(max-width:860px){.daylayout{grid-template-columns:1fr;}}
+#dayMap{height:520px; border-radius:14px; border:1px solid var(--line);}
+@media(max-width:860px){#dayMap{height:360px;}}
+
+/* timeline */
+.timeline{display:flex; flex-direction:column; gap:0;}
+.tl-leg{display:flex; align-items:center; gap:8px; padding:3px 0 3px 13px; min-height:30px;}
+.tl-leg-line{width:2px; height:100%; min-height:22px; background:var(--line); margin-left:11px;}
+.tl-leg-txt{font-size:11.5px; color:var(--sub); background:#14171e; border:1px solid var(--line); border-radius:14px; padding:3px 10px;}
+.tl-leg-txt em{color:#7f8aa0; font-style:normal;}
+.tl-stay{color:var(--sub); font-weight:500; font-size:11px;}
+.timeline .tl-item{margin-bottom:0;}
+.tl-item{display:flex; gap:12px; background:var(--panel2); border:1px solid var(--line); border-radius:12px; padding:12px 13px; cursor:pointer; transition:.15s;}
+.tl-item:hover{border-color:var(--accent); transform:translateX(3px);}
+.tl-item.sel{border-color:var(--accent); box-shadow:0 0 0 1px var(--accent);}
+.tl-item .tl-num{flex:0 0 26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:12px; color:#fff;}
+.tl-item .tl-time{font-size:11.5px; font-weight:700; color:var(--accent2);}
+.tl-item .tl-name{font-size:14px; font-weight:700; margin:2px 0;}
+.tl-item .tl-cat{font-size:11.5px; color:var(--sub);}
+
+/* detail panel under/over map */
+.detail{margin-top:14px; background:var(--panel2); border:1px solid var(--line); border-radius:14px; padding:16px;}
+.detail .d-day{display:inline-block; font-size:11px; font-weight:800; padding:3px 10px; border-radius:20px; color:#001;}
+.detail .d-time{color:var(--accent2); font-weight:700; font-size:13px; margin:10px 0 2px;}
+.detail .d-name{font-size:20px; font-weight:800; letter-spacing:-.3px;}
+.detail .d-cat{color:var(--sub); font-size:12.5px; margin-bottom:11px;}
+.detail .d-leg{font-size:12.5px; color:var(--sub); background:#171a21; border:1px solid var(--line); border-radius:9px; padding:9px 12px; margin-bottom:12px;}
+.detail .d-leg b{color:var(--accent);} .detail .d-leg span{color:#7f8aa0;}
+.detail .d-addr{font-size:12px; color:var(--sub); margin-top:11px; padding-top:10px; border-top:1px dashed var(--line);}
+.detail .d-desc{font-size:13.5px; line-height:1.65; color:#d2d8e6; margin-bottom:12px;}
+.detail .d-tips{background:#171a21; border:1px solid var(--line); border-left:3px solid var(--accent2); border-radius:9px; padding:11px 13px; font-size:12.5px; line-height:1.6; color:var(--sub);}
+.detail .d-tips b{color:var(--accent2);}
+.detail .d-actions{display:flex; gap:8px; margin-top:13px;}
+.detail .d-actions a{flex:1; text-align:center; text-decoration:none; font-size:12.5px; font-weight:700; padding:10px; border-radius:9px; border:1px solid var(--line); background:#171a21;}
+.detail .d-actions a:hover{border-color:var(--accent);}
+
+.routebtn{display:inline-flex; align-items:center; gap:7px; background:var(--accent2); color:#1a1200; font-weight:800; font-size:13px; border:none; padding:12px 18px; border-radius:28px; cursor:pointer; margin-top:14px; text-decoration:none;}
+.routebtn:hover{filter:brightness(1.08);}
+
+/* leaflet dark popup */
+.marker-pin{width:26px; height:26px; border-radius:50% 50% 50% 0; transform:rotate(-45deg); border:2px solid #fff; box-shadow:0 2px 6px rgba(0,0,0,.5); display:flex; align-items:center; justify-content:center;}
+.marker-pin span{transform:rotate(45deg); color:#fff; font-weight:800; font-size:11px;}
+.leaflet-popup-content-wrapper{background:#1e2230; color:#e8ebf2; border-radius:9px;}
+.leaflet-popup-tip{background:#1e2230;}
+.leaflet-popup-content{margin:9px 12px; font-size:12.5px; line-height:1.5;}
+.leaflet-popup-content b{color:var(--accent2);}
+::-webkit-scrollbar{width:9px; height:9px;} ::-webkit-scrollbar-thumb{background:#2c3242; border-radius:8px;}
