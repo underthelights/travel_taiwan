@@ -1,12 +1,21 @@
 (function () {
   var nav = document.querySelector('.nav');
-  if (!nav || nav.querySelector('.nav-notes-link')) return;
+  if (!nav) return;
 
   var page = location.pathname.split('/').pop() || 'index.html';
-  var active = page === 'taiwan-notes.html' ? ' active' : '';
-  var html = '<a href="taiwan-notes.html" class="nav-notes-link' + active + '">타이완 노트</a>';
+  if (!nav.querySelector('.nav-stay-link')) {
+    var stayActive = page === 'stay.html' ? ' active' : '';
+    var stayHtml = '<a href="stay.html" class="nav-stay-link' + stayActive + '">숙소</a>';
+    var eatLink = nav.querySelector('a[href="eat.html"]');
+    if (eatLink) eatLink.insertAdjacentHTML('beforebegin', stayHtml);
+    else nav.insertAdjacentHTML('beforeend', stayHtml);
+  }
 
-  nav.insertAdjacentHTML('beforeend', html);
+  if (!nav.querySelector('.nav-notes-link')) {
+    var notesActive = page === 'taiwan-notes.html' ? ' active' : '';
+    var notesHtml = '<a href="taiwan-notes.html" class="nav-notes-link' + notesActive + '">타이완 노트</a>';
+    nav.insertAdjacentHTML('beforeend', notesHtml);
+  }
 })();
 
 // ===== 일차별 카테고리 메가메뉴 ([1일차]·[2일차]·[3일차] hover/탭 → 분류 이동) =====

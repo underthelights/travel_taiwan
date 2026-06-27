@@ -10,6 +10,7 @@ GitHub Pages: **https://underthelights.github.io/travel_taiwan/**
 |------|------|
 | `index.html` | 홈 — 항공·예산 요약 + 전체 지도 |
 | `day.html?d=1/2/3` | 일자별 상세 — 지도 + 트리플식 구간 이동(교통·시간·요금) + 타임라인 |
+| `stay.html` | 타이베이 숙소 권역·후보 호텔·예약 체크 기준 |
 | `info.html` | 준비물·수하물·현금/통신·지도 저장 체크리스트 |
 | `data.js` | 모든 일정 데이터 (단일 소스) |
 | `taiwan_trip.kml` | 개인 구글맵(My Maps) import용 |

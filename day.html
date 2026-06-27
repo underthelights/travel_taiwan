@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>일자별 코스 ㅣ 대만여행</title>
+<title>일자별 코스 ㅣ The Summer of Taipei</title>
 <meta name="description" content="대만 세계여행 2박3일 일자별 코스와 지도.">
 <meta name="theme-color" content="#f3ead8">
 <link rel="canonical" href="https://underthelights.github.io/travel_taiwan/">
@@ -12,7 +12,7 @@
 <link rel="manifest" href="site.webmanifest">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ko_KR">
-<meta property="og:site_name" content="TAIWAN">
+<meta property="og:site_name" content="The Summer of Taipei">
 <meta property="og:title" content="The Summer of Taipei">
 <meta property="og:description" content="타이중에서 시작해 신주 미식과 타이베이 야시장을 지나는 2박3일 여행 플래너.">
 <meta property="og:url" content="https://underthelights.github.io/travel_taiwan/">
@@ -24,7 +24,7 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="day-page">
 <nav class="nav">
   <a class="logo" href="index.html" aria-label="The Summer of Taipei 홈"><img src="assets/blog-icon.png" alt="">The Summer of Taipei</a>
   <a href="index.html">홈</a>
@@ -37,30 +37,47 @@
 </nav>
 <script src="nav.js"></script>
 
-<div class="wrap">
-  <div class="dayhead">
-    <span class="tag" id="dTag"></span>
-    <div>
+<main class="day-shell">
+  <section class="day-hero-panel" id="dayHero" aria-labelledby="dTitle">
+    <figure class="day-hero-media">
+      <img id="dayHeroImg" src="assets/taipei-skyline-sunset.jpg" alt="">
+    </figure>
+    <div class="day-hero-shade" aria-hidden="true"></div>
+    <div class="day-hero-copy">
+      <span class="day-label" id="dTag"></span>
+      <span class="day-overline" id="dayOverline"></span>
       <h1 id="dTitle"></h1>
       <p id="dTheme"></p>
+      <div class="day-stat-grid" id="dayStats" aria-label="오늘 일정 요약"></div>
     </div>
-    <div class="spacer" style="flex:1"></div>
-    <a class="routebtn" id="routeBtn">오늘 경로 (구글맵)</a>
-    <a class="routebtn" id="kmlBtn">구글맵 KML</a>
-  </div>
+    <div class="day-hero-actions">
+      <a class="routebtn" id="routeBtn">오늘 경로</a>
+      <a class="routebtn secondary" id="kmlBtn">KML</a>
+    </div>
+    <div class="day-wordmark" id="dayWordmark" aria-hidden="true"></div>
+  </section>
 
-  <div class="kindbar" id="kindBar"></div>
+  <section class="day-control-row" aria-label="일정 분류 필터">
+    <div class="kindbar" id="kindBar"></div>
+  </section>
 
-  <div class="daylayout">
-    <div>
+  <section class="daylayout">
+    <section class="timeline-panel" aria-label="오늘의 시간표">
+      <div class="timeline-head">
+        <span class="mini-label">TIMELINE</span>
+        <h2>오늘의 동선</h2>
+      </div>
       <div class="timeline" id="timeline"></div>
-    </div>
-    <div>
-      <div id="dayMap"></div>
+    </section>
+    <aside class="day-side">
+      <div class="map-panel">
+        <span class="mini-label">LIVE MAP</span>
+        <div id="dayMap"></div>
+      </div>
       <div class="detail" id="detail"></div>
-    </div>
-  </div>
-</div>
+    </aside>
+  </section>
+</main>
 
 <script src="data.js"></script>
 <script>
@@ -75,11 +92,31 @@ document.getElementById('nav'+day).classList.add('active');
 const list = T.places.filter(p=>p.day===day);
 const color = T.dayColor[day];
 const stripEmoji = s => String(s || '').replace(/[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\uFE0F]/gu,'').replace(/\s+/g,' ').trim();
+const visual = {
+  1: {title:'타이중 → 신주 → 닝샤', summary:'7곳 · 공항 도착부터 닝샤 야시장까지', image:'assets/hsinchu-temple-night.jpg', alt:'신주 성황묘 주변 밤거리', overline:'WEST COAST OPENING', word:'HSINCHU'},
+  2: {title:'타이베이 시티 데이', summary:'6곳 · 아침 식사부터 라오허 야시장까지', image:'assets/taipei-yongkang-morning.jpg', alt:'타이베이 융캉제 아침 거리', overline:'TAIPEI CITY DAY', word:'TAIPEI'},
+  3: {title:'완화·시먼딩 → 귀국', summary:'5곳 · 완화 산책 후 타이중 공항으로', image:'assets/taipei-skyline-sunset.jpg', alt:'석양의 타이베이 스카이라인', overline:'WANHUA RETURN RUN', word:'WANHUA'},
+}[day];
 
 document.getElementById('dTag').textContent = T.dayLabel[day];
-document.getElementById('dTag').style.background = color;
-document.getElementById('dTitle').textContent = T.dayTheme[day];
-document.getElementById('dTheme').textContent = list.length+'곳 · 시간순 코스';
+document.getElementById('dTag').style.setProperty('--day-color', color);
+document.getElementById('dTitle').textContent = visual.title;
+document.getElementById('dTheme').textContent = visual.summary;
+document.getElementById('dayOverline').textContent = visual.overline;
+document.getElementById('dayWordmark').textContent = visual.word;
+document.getElementById('dayHeroImg').src = visual.image;
+document.getElementById('dayHeroImg').alt = visual.alt;
+document.body.style.setProperty('--day-color', color);
+document.body.style.setProperty('--day-color-soft', color + '28');
+const kindCount = kind => list.filter(p=>p.kind===kind).length;
+document.getElementById('dayStats').innerHTML = [
+  ['NODES', String(list.length).padStart(2,'0')],
+  ['START', list[0].time],
+  ['END', list[list.length-1].time],
+  ['FOOD', String(kindCount('food')).padStart(2,'0')],
+  ['SIGHT', String(kindCount('sight')).padStart(2,'0')],
+  ['MOVE', String(kindCount('move')).padStart(2,'0')],
+].map(([k,v])=>`<div><span>${k}</span><b>${v}</b></div>`).join('');
 
 // ===== map =====
 const map = L.map('dayMap').setView([list[0].lat,list[0].lng],11);
@@ -103,16 +140,16 @@ tl.innerHTML = list.map((p,i)=>{
   const km = T.placeKindMeta[p.kind] || {icon:'',label:'',color:'#888'};
   return `
   <div class="tl-leg" data-kind="${p.kind}"><span class="tl-leg-line"></span>
-    <span class="tl-leg-txt">${stripEmoji(p.move.mode)} ${p.move.min}${p.move.cost!=='-'?' · '+p.move.cost:''} <em>${p.move.note}</em></span>
+    <span class="tl-leg-txt"><b>MOVE</b> ${stripEmoji(p.move.mode)} ${p.move.min}${p.move.cost!=='-'?' · '+p.move.cost:''} <em>${p.move.note}</em></span>
   </div>
-  <div class="tl-item" data-id="${p.id}" data-kind="${p.kind}">
-    <div class="tl-num" style="background:${color}">${i+1}</div>
-    <div>
+  <article class="tl-item" data-id="${p.id}" data-kind="${p.kind}" style="--item-color:${km.color}">
+    <div class="tl-num" style="background:${color}">${String(i+1).padStart(2,'0')}</div>
+    <div class="tl-card-main">
       <div class="tl-time">${p.time} <span class="tl-stay">· ${p.stay} 머무름</span></div>
       <div class="tl-name">${p.name} ${p.badge?`<span class="tl-badge">${p.badge}</span>`:''}</div>
       <div class="tl-cat"><span class="tl-kind" style="color:${km.color}; border-color:${km.color}66">${km.icon} ${km.label}</span> ${stripEmoji(p.cat)}</div>
     </div>
-  </div>`;
+  </article>`;
 }).join('');
 tl.querySelectorAll('.tl-item').forEach(el=>{
   const p = list.find(x=>x.id==el.dataset.id);

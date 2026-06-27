@@ -32,6 +32,7 @@
 | `index.html` | 홈. 히어로, 진행률, 항공/예산, 일차 카드, 전체 Leaflet 지도. |
 | `day.html` | `day.html?d=1/2/3` 일차별 상세. 타임라인, 지도, 상세 패널, 분류 필터, 구글맵 경로, KML 내보내기. |
 | `taiwan-notes.html` | 대만 배경지식, 도시 역할, 현지 규칙을 정리한 핵심노트. |
+| `stay.html` | `TRIP.stayInfo` 기반 타이베이 숙소 권역, 후보 호텔, 예약 체크 기준. |
 | `eat.html` | `TRIP.eats` 기반 먹킷리스트. |
 | `train.html` | `TRIP.trainInfo` 기반 교통카드, 패스, 고속철 구간권, 이동 방식 가이드. |
 | `info.html` | 준비물 전용 페이지. 서류, 수하물, 현금/통신, 지도 저장, 예산만 다룬다. |

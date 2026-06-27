@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Summer of Taipei ㅣ 2박3일</title>
-<meta name="description" content="타이중에서 들어와 신주를 지나 타이베이에 머무는 2박3일 대만 여행 플래너.">
+<meta name="description" content="비가 갠 8월, 타이중에서 시작해 신주를 스치고 타이베이에 머무는 2박3일 대만 여행 플래너.">
 <meta name="theme-color" content="#f4eee3">
 <link rel="canonical" href="https://underthelights.github.io/travel_taiwan/">
 <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
@@ -15,7 +15,7 @@
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="The Summer of Taipei">
 <meta property="og:title" content="The Summer of Taipei">
-<meta property="og:description" content="타이중, 신주, 타이베이를 서쪽 도시축으로 잇는 2박3일 대만 여행 플래너.">
+<meta property="og:description" content="비가 갠 8월, 타이중에서 시작해 신주를 스치고 타이베이에 머무는 2박3일 대만 여행 플래너.">
 <meta property="og:url" content="https://underthelights.github.io/travel_taiwan/">
 <meta property="og:image" content="https://underthelights.github.io/travel_taiwan/assets/og-image.png">
 <meta property="og:image:secure_url" content="https://underthelights.github.io/travel_taiwan/assets/og-image.png">
@@ -24,7 +24,7 @@
 <meta property="og:image:alt" content="The Summer of Taipei 대만 2박3일 여행 플래너">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="The Summer of Taipei">
-<meta name="twitter:description" content="타이중, 신주, 타이베이를 서쪽 도시축으로 잇는 2박3일 대만 여행 플래너.">
+<meta name="twitter:description" content="비가 갠 8월, 타이중에서 시작해 신주를 스치고 타이베이에 머무는 2박3일 대만 여행 플래너.">
 <meta name="twitter:image" content="https://underthelights.github.io/travel_taiwan/assets/og-image.png">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -46,7 +46,7 @@
 <main class="home-shell fly-home">
   <section class="taiwan-stage" aria-labelledby="hTitle">
     <figure class="stage-media">
-      <img src="assets/taipei-yongkang-morning.jpg" alt="타이베이 용캉제의 아침 거리">
+      <img src="assets/summer-of-taipei-hero.png" alt="비가 갠 뒤 햇빛이 드는 타이베이 여름 골목">
     </figure>
     <div class="stage-glass" aria-hidden="true"></div>
 
@@ -58,25 +58,11 @@
 
     <div class="stage-copy">
       <span class="hero-kicker">AUGUST 1-3, 2026 · RMQ IN/OUT</span>
-      <h1 id="hTitle" class="sr-only">The Summer of Taipei</h1>
-      <svg class="summer-title" viewBox="0 0 780 260" role="img" aria-labelledby="summerTitle summerDesc">
-        <title id="summerTitle">The Summer of Taipei</title>
-        <desc id="summerDesc">포스터 위에 손글씨 타이틀이 왼쪽에서 오른쪽으로 써지는 write-on 애니메이션</desc>
-        <defs>
-          <mask id="summerTitleMask" maskUnits="userSpaceOnUse">
-            <rect width="780" height="260" fill="black"/>
-            <path class="title-reveal title-reveal-1" pathLength="1000"
-              d="M26 92 C92 64 166 64 246 84 C332 106 422 98 520 72 C604 50 692 58 752 92"/>
-            <path class="title-reveal title-reveal-2" pathLength="1000"
-              d="M142 198 C220 166 294 166 370 190 C456 218 558 214 732 168"/>
-          </mask>
-        </defs>
-        <g class="summer-title-text" mask="url(#summerTitleMask)">
-          <text x="22" y="108">The Summer</text>
-          <text x="142" y="218">of Taipei</text>
-        </g>
-      </svg>
-      <p id="hSub">타이중에서 들어와 신주를 지나 타이베이에 머무는 2박3일. 이동은 짧게, 도시는 선명하게.</p>
+      <h1 id="hTitle" class="editorial-title">
+        <span class="title-minor">The Summer of</span>
+        <span>Taipei</span>
+      </h1>
+      <p id="hSub">비가 갠 8월, 서쪽 도시축을 따라 타이베이에 닿는 짧은 여름 여행.</p>
       <div class="hero-actions">
         <a class="hero-btn primary" href="day.html?d=1">일정 보기</a>
         <a class="hero-btn" href="taiwan-notes.html">타이완 노트</a>
@@ -108,6 +94,32 @@
     <span>RAOHE NIGHT MARKET</span>
   </section>
 
+  <section class="home-brief" aria-label="여행 브리프">
+    <div class="home-brief-copy">
+      <span class="mini-label">TRIP BRIEF</span>
+      <h2>공항, 밥, 숙소,<br>귀국 시간을 먼저 잡는다.</h2>
+      <p>홈은 매일 추가되는 내용을 받는 입구다. 세부 일정은 각 날짜에 쌓고, 홈에서는 지금 정해야 하는 것만 빠르게 보이게 둔다.</p>
+    </div>
+    <div class="home-brief-grid" id="homeBrief"></div>
+  </section>
+
+  <section class="home-chapters" aria-label="여정 챕터">
+    <div class="chapter-copy">
+      <span class="mini-label">THREE CHAPTERS</span>
+      <h2>타이중으로 들어와 신주에서 먹고, 타이베이에 눕는다.</h2>
+    </div>
+    <div class="chapter-deck" id="chapterDeck"></div>
+  </section>
+
+  <section class="home-live-board" aria-label="진행 보드">
+    <div class="board-copy">
+      <span class="mini-label">LIVE BOARD</span>
+      <h2>아직 정해야 할 것들.</h2>
+      <p>항공권은 끝났고, 지금은 3명 1실 숙소와 귀국날 고속철 시간이 핵심이다.</p>
+    </div>
+    <div class="decision-strip" id="homeDecisions"></div>
+  </section>
+
   <section class="home-map-panel" id="worldMap">
     <div class="map-copy">
       <span class="mini-label">ROUTE MAP</span>
@@ -134,7 +146,7 @@ byId('progressBar').style.width = progress.pct + '%';
 byId('shareBtn').onclick = async () => {
   const shareData = {
     title: 'The Summer of Taipei',
-    text: '타이중에서 시작해 신주 미식과 타이베이 야시장을 지나는 2박3일 여행 플래너',
+    text: '비가 갠 8월, 타이중에서 시작해 신주를 스치고 타이베이에 머무는 2박3일 여행 플래너',
     url: location.href
   };
   try {
@@ -151,6 +163,52 @@ byId('shareBtn').onclick = async () => {
     }
   }
 };
+
+const decisionById = id => T.decisions.find(d => d.id === id) || {};
+const stayInfo = T.stayInfo || {};
+const homeBrief = [
+  {label:'FLIGHT', value:T.flight.map(f => f.code).join(' / '), desc:'RMQ로 들어오고 RMQ로 나간다. 항공권은 이미 확정.', href:'day.html?d=1'},
+  {label:'SLEEP', value:'Taipei · 3명 1실', desc:stayInfo.verdict ? stayInfo.verdict.area : '시먼딩·베이먼 우선', href:'stay.html'},
+  {label:'FOOD', value:`${T.eats.length} dishes`, desc:'신주 성황묘, 딘타이펑, 야시장까지 사진으로 다시 정리.', href:'eat.html'},
+  {label:'MOVE', value:'EasyCard + THSR', desc:'패스보다 구간권 기준. 귀국날 시간 지정이 핵심.', href:'train.html'},
+];
+byId('homeBrief').innerHTML = homeBrief.map(item => `
+  <a class="home-brief-card" href="${item.href}">
+    <span>${item.label}</span>
+    <b>${item.value}</b>
+    <em>${item.desc}</em>
+  </a>
+`).join('');
+
+const chapters = [
+  {num:'01', title:'Taichung Landing', text:'09:40 RMQ 도착. 공항에서 바로 신우일역으로 붙어 북상한다.', img:'assets/taichung-skyline.jpg', href:'day.html?d=1'},
+  {num:'02', title:'Hsinchu Table', text:'성황묘 주변에서 오리덮밥, 공환, 미펀을 점심 동선으로 압축한다.', img:'assets/hsinchu-temple-night.jpg', href:'eat.html'},
+  {num:'03', title:'Taipei Nights', text:'2박은 타이베이에 둔다. 3명 1실은 시먼딩·베이먼·역 서쪽부터 본다.', img:'assets/taipei-yongkang-morning.jpg', href:'stay.html'},
+];
+byId('chapterDeck').innerHTML = chapters.map(ch => `
+  <a class="chapter-card" href="${ch.href}">
+    <img src="${ch.img}" loading="lazy" alt="">
+    <span>${ch.num}</span>
+    <b>${ch.title}</b>
+    <em>${ch.text}</em>
+  </a>
+`).join('');
+
+const boardItems = [
+  decisionById('flight'),
+  decisionById('stay'),
+  decisionById('thsr'),
+  decisionById('food'),
+  decisionById('simcard'),
+  decisionById('cash'),
+].filter(Boolean);
+byId('homeDecisions').innerHTML = boardItems.map(item => `
+  <article class="decision-ticket ${item.status || 'todo'}">
+    <span>${item.status || 'todo'}</span>
+    <h3>${item.title}</h3>
+    <p>${item.note}</p>
+  </article>
+`).join('');
 
 const map = L.map('homeMap',{scrollWheelZoom:false}).setView([24.95,121.15],8);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap'}).addTo(map);

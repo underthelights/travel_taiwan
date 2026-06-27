@@ -2,7 +2,7 @@
 window.TRIP = {
   meta: {
     title: 'The Summer of Taipei',
-    sub: '타이중에서 들어와 신주를 지나 타이베이에 머무는 2박3일.',
+    sub: '비가 갠 8월, 서쪽 도시축을 따라 타이베이에 닿는 짧은 여름 여행.',
   },
 
   // ===== 하네스: 상태 모델 =====
@@ -52,7 +52,7 @@ window.TRIP = {
   homeContent: {
     reservations: [
       {item:'항공권', status:'완료', tone:'done', detail:'진에어 LJ0735/0738 발권완료. 타이중 IN/OUT, 위탁 수하물 15kg 포함.'},
-      {item:'숙소', status:'미정', tone:'todo', detail:'타이베이역 또는 시먼딩 우선. 확정되면 체크인 핀과 귀국날 짐 동선까지 다시 맞춘다.'},
+      {item:'숙소', status:'도시 확정', tone:'doing', detail:'2박은 타이베이. 시먼딩·베이먼·타이베이역 서쪽 후보를 비교하고, 호텔 확정 후 체크인 핀과 귀국날 짐 동선을 다시 맞춘다.'},
       {item:'고속철', status:'미정', tone:'todo', detail:'Day 1은 도착 지연 가능성이 있어 유동적으로, Day 3 타이베이→타이중만 시간 지정 권장.'},
       {item:'eSIM', status:'미정', tone:'todo', detail:'출국 전에 사두면 RMQ 도착 직후 공항→HSR 이동과 구글맵 확인이 안정적이다.'},
       {item:'101 전망대', status:'선택', tone:'option', detail:'날씨가 좋고 체력이 남으면 석양 시간대로 넣는다. 비 오면 쇼핑몰·식사 중심으로 전환.'},
@@ -94,9 +94,9 @@ window.TRIP = {
   decisions: [
     {id:'flight', cat:'budget', status:'done', prio:1, title:'항공권 예약',
      deadline:'완료', note:'진에어 LJ0735/0738 · 타이중 IN/OUT · 8/1~8/3 · 1인 · ₩298,700 확정.', options:[]},
-    {id:'stay', cat:'route', status:'todo', prio:1, title:'타이베이 숙소 2박 (8/1·8/2)',
-     deadline:'성수기 — 빠를수록', note:'동선상 교통허브 근처가 유리. 정하면 숙소 핀을 confirmed로.',
-     options:['타이베이 메인역 인근 (교통 허브)', '시먼딩 (야시장·먹거리)', '중샤오푸싱 (쇼핑)']},
+    {id:'stay', cat:'route', status:'doing', prio:1, title:'타이베이 숙소 2박 (8/1·8/2)',
+     deadline:'성수기 — 빠를수록', note:'숙박 도시는 타이베이로 결정. 권역은 시먼딩/베이먼/타이베이역 서쪽을 1순위로 보고, 호텔 확정 전까지 숙소 핀은 candidate 유지.',
+     options:['시먼딩·베이먼 사이 (1순위)', '타이베이 메인역 서쪽/남쪽', '중산·솽롄', '둥먼·융캉제']},
     {id:'thsr', cat:'route', status:'doing', prio:2, title:'고속철(THSR) 타이중↔타이베이 + 예매',
      deadline:'탑승 전', note:'조사 기준 결론은 THSR 패스보다 구간권. 타이중→신주→타이베이→타이중 합계가 짧아 패스는 손해. 귀국날 타이베이→타이중만 시간 지정 권장. ※주의: 타이중 공항(RMQ)은 HSR역과 떨어져 있어 공항↔신우일역 이동이 별도로 필요.',
      options:['클룩/KKday 외국인 THSR 구간권(우선)', 'T Express 공식앱 직접 예매', 'Day1 짧은 구간 현장 발권/자유석', '저렴: 타철 자강호 2h·약 NT$375']},
@@ -147,7 +147,7 @@ window.TRIP = {
       {title:'기내 수하물', items:['10kg, 세 변 합 115cm 이하', '노트북가방 1개 별도 가능', '보조배터리·라이터는 위탁 금지', '액체는 100ml 이하, 1L 지퍼백 1개']},
     ],
     todo: [
-      ['숙소', '타이베이 2박 위치 확정'],
+      ['숙소', '시먼딩·베이먼·타이베이역 후보 중 호텔 확정'],
       ['교통', '귀국날 HSR 시간 지정 여부 결정'],
       ['통신', 'eSIM/유심 선택'],
       ['현금', 'NT$ 환전 또는 ATM 계획'],
@@ -158,6 +158,63 @@ window.TRIP = {
       'Google My Maps에서 새 지도 만들기',
       '가져오기에서 KML 업로드',
       '1·2·3일차 레이어와 핀 확인',
+    ],
+  },
+
+  // ===== 숙소 후보 (타이베이 2박) =====
+  stayInfo: {
+    updated:'2026-06-27 기준 3명 1실 공개 객실 정보 확인',
+    verdict: {
+      title:'타이베이에서 3명 1실로 2박',
+      area:'시먼딩·베이먼·타이베이역 서쪽',
+      note:'이번 숙소는 3명 1실 기준으로 본다. 트리플룸, 패밀리룸, 쿼드룸이 없거나 엑스트라베드만 애매하게 가능한 더블룸은 제외한다. 위치는 시먼딩·베이먼·타이베이역 서쪽이 1순위다.',
+    },
+    roomNeed: [
+      {k:'인원', v:'성인 3명 · 1실', desc:'예약 사이트에서 기본 2명으로 검색하면 안 된다. 처음부터 3명으로 넣고 총액 비교.'},
+      {k:'객실', v:'Triple / Family / Quad', desc:'더블룸에 3명 투숙 가능한지 애매하면 제외. 침대 구성까지 확인.'},
+      {k:'침대', v:'3싱글 or 더블+싱글', desc:'2더블/쿼드도 가능하지만 방값이 튈 수 있다. 3명이 각자 편한 구성이 우선.'},
+      {k:'체크', v:'세금 포함 총액', desc:'3인실은 재고가 적어 가격 변동이 크다. 무료취소 조건이면 먼저 잡는 쪽이 유리.'},
+    ],
+    nights: [
+      {date:'2026.08.01(토)', flow:'신주 → 타이베이 체크인 → 닝샤 야시장', need:'늦은 체크인, 짐 놓고 바로 MRT/택시 이동'},
+      {date:'2026.08.02(일)', flow:'푸항또우장 → 융캉제 → 101 → 라오허', need:'아침 이동이 쉽고, 밤에 돌아오기 부담 없는 위치'},
+      {date:'2026.08.03(월)', flow:'룽산쓰·보피랴오 → 시먼딩 → 타이베이역 → HSR', need:'체크아웃 뒤 짐 보관, 타이베이역 접근성'},
+    ],
+    areas: [
+      {name:'시먼딩·베이먼', rank:'1순위', tone:'best', why:'Day3 완화/시먼딩 동선이 가장 편하고, Day1 밤에도 먹을 곳이 많다. 베이먼이면 타이베이역·공항MRT 접근도 챙긴다.', watch:'밤까지 붐비고 방이 작을 수 있음. 창문/방음/엘리베이터 후기 확인.'},
+      {name:'타이베이 메인역 서쪽/남쪽', rank:'안전픽', tone:'good', why:'HSR 귀국, 공항MRT, 짐 보관이 가장 단순하다. 일정이 밀려도 복구하기 좋다.', watch:'역 지하가 복잡하다. Z출구/엘리베이터 동선을 예약 전 확인.'},
+      {name:'중산·솽롄', rank:'감성픽', tone:'maybe', why:'닝샤 야시장과 카페/식당 접근이 좋고 분위기가 덜 관광지스럽다.', watch:'Day3 시먼딩·타이베이역 짐 동선은 한 번 더 계산해야 함.'},
+      {name:'둥먼·융캉제', rank:'보류', tone:'hold', why:'Day2 점심과 카페 동선은 좋지만 2박3일 전체 기준으로는 동쪽에 치우친다.', watch:'귀국날 짐 들고 타이베이역으로 돌아오는 시간이 아깝다.'},
+    ],
+    candidates: [
+      {name:'CityInn Hotel Plus Ximending Branch', area:'Ximen', grade:'균형형', room:'Triple / Family 타입 확인', bed:'3명 1실 가능한 객실만', source:'https://c4.cityinn.com.tw/en/', why:'시먼역과 시먼딩 접근성이 좋고, 깔끔한 3성급 후보로 보기 좋다. 3인실 재고가 있으면 가장 균형이 좋다.', good:['시먼역 도보권', '3명 1실 후보', 'Day3 시먼딩 쇼핑 후 짐 회수 쉬움'], watch:['3인 객실 재고 우선 확인', '객실 크기와 창문 타입 확인'], score:{route:5, rest:4, price:3}},
+      {name:'Roaders Hotel Zhonghua', area:'Ximending / Zhonghua Rd', grade:'재미형', room:'Triple / Family Suite 계열', bed:'3명 수용 타입 우선', source:'https://zhonghua.roadershotel.com/en', why:'시먼딩에 가까운 테마형 호텔. 3명이 한 방을 쓰는 여행이면 로비/간식/놀이 요소가 있어 숙소 자체가 덜 심심하다.', good:['시먼딩·베이먼 사이 감각', '3인/패밀리 타입 비교', '로비 시설이 재미있음'], watch:['테마가 취향 탈 수 있음', '조용함 우선이면 후기 확인'], score:{route:5, rest:3, price:3}},
+      {name:'Finders Hotel', area:'NTU Hospital / Ximen 사이', grade:'가성비형', room:'Triple Room 재고 확인', bed:'더블+싱글 계열 가능성', source:'https://www.findershotel.com/', why:'타이베이역, NTU Hospital, 시먼 사이에 걸친 위치라 도보/지하철 선택지가 넓다. 3인실 가격이 맞으면 가성비 후보.', good:['타이베이역·시먼 사이', '짐 동선 유연', '3명 총액 비교용'], watch:['3인실 없으면 제외', '창문 없는 방 여부 확인'], score:{route:4, rest:3, price:4}},
+      {name:'Hotel Relax I/II/III/V', area:'Taipei Main Station', grade:'교통형', room:'Triple / Executive Triple 확인', bed:'지점별 3인 객실 확인', source:'https://www.hotelrelaxclub.com/en/', why:'타이베이역 접근성을 최우선으로 볼 때 비교군에 넣기 좋다. 3명이 짐 들고 움직이면 역 접근성의 가치가 커진다.', good:['타이베이역 중심', '3인실 지점 비교', '짐 보관 동선 단순'], watch:['시먼딩 감성은 약함', '지점별 위치와 객실 타입 확인'], score:{route:5, rest:3, price:3}},
+      {name:'Just Sleep Taipei Ximending', area:'Ximending', grade:'상향형', room:'Triple / Family 타입 확인', bed:'3싱글 또는 패밀리 구성 확인', source:'https://www.justsleephotels.com/ximending/en', why:'예산을 조금 올려도 위치와 안정감을 우선할 때 비교할 만한 후보. 3명이라면 방 컨디션 안정성이 더 중요해진다.', good:['시먼딩 중심', '브랜드 안정감', '3인 여행 안정픽'], watch:['예산 초과 가능성', '조식 포함 여부 확인'], score:{route:5, rest:4, price:2}},
+      {name:'Tomorrow Hotel', area:'Ximen', grade:'저예산 후보', room:'Triple / Quadruple만', bed:'더블룸 3명 투숙은 제외', source:'https://tomorrowhotel.tw-taiwan.com/en/', why:'기존 후보로 언급된 시먼역 근처 숙소. 3인실 또는 4인실 가격이 낮게 나오면 백업으로 확인한다.', good:['시먼역 매우 가까운 편', '3인/4인실 백업', 'Day3 동선 좋음'], watch:['시설 노후/방음/청결 최신 후기', '더블룸에 3명 끼워넣기 금지'], score:{route:5, rest:2, price:4}},
+    ],
+    rules: [
+      {k:'위치', v:'Ximen/Beimen/Taipei Main 도보 8분 안쪽', desc:'2박3일은 숙소 감성보다 짐 동선이 먼저다.'},
+      {k:'체크아웃', v:'짐 보관 가능 여부', desc:'Day3 오전 완화·시먼딩 후 타이베이역으로 가야 하므로 필수.'},
+      {k:'방 타입', v:'성인 3명 1실', desc:'Triple, Family, Quad 객실만 본다. 더블룸+엑스트라베드 가능 여부가 불명확하면 제외.'},
+      {k:'침대 구성', v:'3싱글 또는 더블+싱글', desc:'셋이 실제로 잘 수 있는지 확인. 2더블/쿼드는 가능하지만 총액이 튈 수 있다.'},
+      {k:'후기', v:'최근 6개월 방음·청결', desc:'대만 도심 숙소는 위치보다 방음/습기 후기가 체감 차이를 만든다.'},
+    ],
+    booking: [
+      '1순위 권역을 시먼딩·베이먼·타이베이역 서쪽으로 고정한다.',
+      '후보 6개를 같은 날짜(8/1~8/3), 성인 3명, 객실 1개, 세금 포함 총액으로 비교한다.',
+      '객실명이 Triple, Family, Quad인지 확인하고 침대 구성을 캡처해둔다.',
+      '창문 있음, 금연, 전용 욕실, 짐 보관, 24시 프론트 또는 늦은 체크인 가능 여부를 체크한다.',
+      '무료취소가 가능하면 먼저 잡고, 출국 1~2주 전 더 좋은 방이 있으면 갈아탄다.',
+    ],
+    sources: [
+      {name:'CityInn Hotel Plus Ximending Branch', url:'https://c4.cityinn.com.tw/en/'},
+      {name:'Roaders Hotel Zhonghua', url:'https://zhonghua.roadershotel.com/en'},
+      {name:'Finders Hotel', url:'https://www.findershotel.com/'},
+      {name:'Hotel Relax Taipei', url:'https://www.hotelrelaxclub.com/en/'},
+      {name:'Just Sleep Taipei Ximending', url:'https://www.justsleephotels.com/ximending/en'},
+      {name:'Tomorrow Hotel', url:'https://tomorrowhotel.tw-taiwan.com/en/'},
     ],
   },
   // move: 직전 장소에서 이 장소까지 이동 (트리플식). 블로거 mino0522 + 다수 후기 반영.
