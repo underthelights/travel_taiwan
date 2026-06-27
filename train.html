@@ -141,6 +141,22 @@
     .ana{grid-template-columns:1fr;}
     .ana .h:nth-child(1),.ana .h:nth-child(2),.ana .h:nth-child(3){display:none;}
   }
+  @media(max-width:1200px){
+    html,body{overflow-x:hidden;}
+    .wrap{width:100%; max-width:100%; padding-left:15px; padding-right:15px; overflow:hidden;}
+    .mobility-hero,.answer-grid,.route-flow,.pass-grid,.book-grid,#legBox,.card,.step-list,.decision-note,.source-box{
+      width:100%; max-width:100%; min-width:0;
+    }
+    .answer-card,.route-step,.pass-card,.book-card,.leg-row,.decision-note,.source-box,.step-list{
+      width:100%; max-width:100%; min-width:0; overflow:hidden;
+    }
+    .answer-card b,.route-step b,.pass-top b,.book-card b{
+      display:block; max-width:100%; white-space:normal; word-break:keep-all; overflow-wrap:anywhere;
+    }
+    .mobility-hero p,.answer-card p,.route-step p,.pass-card p,.book-card p,.decision-note,.step-list li,.disc li,.ana .c{
+      display:block; width:100%; max-width:100%; white-space:normal; word-break:break-all; overflow-wrap:anywhere;
+    }
+  }
 </style>
 </head>
 <body>
